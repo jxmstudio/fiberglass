@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fibreglass Technologies Website
+
+A modern, professional website for Fibreglass Technologies - premium fibreglass pool renovations across New Zealand.
+
+## Features
+
+- **Modern Design**: Built with Next.js 16, React 19, and Tailwind CSS v4
+- **shadcn/ui Components**: Beautiful, accessible UI components
+- **Responsive**: Fully responsive design that works on all devices
+- **SEO Optimized**: Proper metadata and semantic HTML
+- **Form Handling**: Contact form with validation using react-hook-form and Zod
+
+## Pages
+
+1. **Homepage** (`/`) - Hero section, value proposition, services overview, and CTAs
+2. **Services** (`/services`) - Detailed service offerings with outcomes and inclusions
+3. **Why Fibreglass?** (`/why-fibreglass`) - Educational content about fibreglass benefits
+4. **Our Process** (`/our-process`) - 5-step professional process breakdown
+5. **Contact** (`/contact`) - Contact form and enquiry page
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **UI Components**: shadcn/ui
+- **Icons**: Lucide React
+- **Forms**: react-hook-form + Zod validation
+- **Fonts**: Geist Sans & Geist Mono
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the website.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+fiberglass/
+├── app/                    # Next.js App Router pages
+│   ├── page.tsx           # Homepage
+│   ├── services/          # Services page
+│   ├── why-fibreglass/    # Education page
+│   ├── our-process/       # Process page
+│   ├── contact/           # Contact page
+│   ├── layout.tsx         # Root layout
+│   └── globals.css        # Global styles
+├── components/            # React components
+│   ├── navigation.tsx     # Site navigation
+│   ├── footer.tsx         # Site footer
+│   └── ui/                # shadcn/ui components
+└── lib/                   # Utility functions
+```
 
-## Learn More
+## Brand Colors
 
-To learn more about Next.js, take a look at the following resources:
+The site uses a blue/grey color scheme:
+- Primary: Blue tones (oklch(0.45 0.15 240))
+- Background: Clean whites and light greys
+- Accents: Professional blues and greys
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Customization
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Updating Content
 
-## Deploy on Vercel
+- Edit page content in `app/[page-name]/page.tsx`
+- Update navigation items in `components/navigation.tsx`
+- Modify footer content in `components/footer.tsx`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Styling
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Global styles: `app/globals.css`
+- Color scheme: CSS variables in `globals.css`
+- Component styles: Tailwind classes in components
+
+### Form Submission
+
+The contact form currently logs to console. To connect to a backend:
+
+1. Update the `onSubmit` function in `app/contact/page.tsx`
+2. Add your API endpoint
+3. Handle form submission server-side
+
+## Deployment
+
+This project can be deployed on:
+- **Vercel** (recommended for Next.js)
+- **Netlify**
+- **Any Node.js hosting**
+
+```bash
+# Build the project
+npm run build
+
+# The output will be in .next/ directory
+```
+
+## License
+
+Private project for Fibreglass Technologies.
