@@ -1,14 +1,55 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Google Sheets API endpoint for appending data
 const GOOGLE_SHEETS_ID = "1FQgHP2A0ur-omZa2nq55_TwXrjP04JfEw7eBRT5aNIo";
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  phone: string;
+  location: string;
+  message: string;
+  honeypot?: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  first_visit_source?: string;
+  landing_page?: string;
+  referrer?: string;
+  submitted_at?: string;
+  page_url?: string;
+}
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { name, email, phone, location, message } = body;
+    const body: ContactFormData = await request.json();
+    const { 
+      name, 
+      email, 
+      phone, 
+      location, 
+      message,
+      honeypot,
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      utm_term,
+      utm_content,
+      first_visit_source,
+      landing_page,
+      referrer,
+      page_url,
+    } = body;
 
-    // Validate required fields
+    if (honeypot) {
+      console.log("Bot submission detected and blocked");
+      return NextResponse.json(
+        { success: true, message: "Form submitted successfully" },
+        { status: 200 }
+      );
+    }
+
     if (!name || !email || !phone || !location || !message) {
       return NextResponse.json(
         { error: "All fields are required" },
@@ -16,14 +57,28 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create the row data with timestamp
     const timestamp = new Date().toLocaleString("en-NZ", {
       timeZone: "Pacific/Auckland",
       dateStyle: "full",
       timeStyle: "short",
     });
 
-    const rowData = [timestamp, name, email, phone, location, message];
+    const rowData = [
+      timestamp,
+      name,
+      email,
+      phone,
+      location,
+      message,
+    ];
+
+    const source = utm_source || first_visit_source || 'direct';
+    console.log("--- Attribution Data (not sent to sheet) ---");
+    console.log("Source:", source);
+    console.log("Medium:", utm_medium || 'N/A');
+    console.log("Campaign:", utm_campaign || 'N/A');
+    console.log("Landing Page:", landing_page || 'N/A');
+    console.log("Referrer:", referrer || 'N/A');
 
     // Use Google Apps Script Web App approach (publicly accessible)
     // This requires setting up a Google Apps Script to handle the data
@@ -44,13 +99,21 @@ export async function POST(request: NextRequest) {
           sheetId: GOOGLE_SHEETS_ID,
           data: rowData,
         }),
+        redirect: "follow",
       });
 
+      const responseText = await response.text();
+      console.log("Google Script response status:", response.status);
+      console.log("Google Script response:", responseText);
+
       if (!response.ok) {
-        throw new Error("Failed to submit to Google Sheets");
+        if (response.status === 403) {
+          console.error("Google Apps Script access denied - check deployment settings");
+          throw new Error("Google Sheets integration not configured correctly");
+        }
+        throw new Error(`Failed to submit to Google Sheets: ${response.status}`);
       }
     } else {
-      // Fallback: Log the submission (you can also save to a local file or database)
       console.log("=== NEW CONTACT FORM SUBMISSION ===");
       console.log("Timestamp:", timestamp);
       console.log("Name:", name);
@@ -58,18 +121,7 @@ export async function POST(request: NextRequest) {
       console.log("Phone:", phone);
       console.log("Location:", location);
       console.log("Message:", message);
-      console.log("Google Sheet ID:", GOOGLE_SHEETS_ID);
       console.log("=====================================");
-      
-      // For direct Google Sheets integration without Apps Script,
-      // you would need a service account. Here's the approach:
-      // 1. Create a Google Cloud project
-      // 2. Enable Google Sheets API
-      // 3. Create a service account and download the JSON key
-      // 4. Share the spreadsheet with the service account email
-      // 5. Use the googleapis npm package
-      
-      // For simplicity, we'll provide instructions to set up Google Apps Script
     }
 
     return NextResponse.json(

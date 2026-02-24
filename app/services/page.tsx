@@ -3,9 +3,26 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2, Droplets, Palette, Wrench, Zap, Truck, ArrowRight } from "lucide-react";
 
-export const metadata = {
-  title: "Services | Fibreglass Technologies",
-  description: "Comprehensive fibreglass pool services: resurfacing, recolouring, repairs, and modernisation. Nationwide mobile service.",
+import type { Metadata } from "next";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://fibreglasstech.co.nz';
+
+export const metadata: Metadata = {
+  title: "Pool Resurfacing Services NZ | Fibreglass Repairs & Renovation",
+  description: "Professional fibreglass pool resurfacing, gelcoat recolouring, structural repairs & pool modernisation services across New Zealand. Nationwide mobile service. Get your free assessment today.",
+  openGraph: {
+    title: "Pool Resurfacing Services NZ | Fibreglass Technologies",
+    description: "Professional fibreglass pool resurfacing, gelcoat recolouring, structural repairs & pool modernisation services across New Zealand.",
+    url: `${siteUrl}/services`,
+    images: [{ url: "/clean.png", width: 1200, height: 630, alt: "Fibreglass pool services NZ" }],
+  },
+  twitter: {
+    title: "Pool Resurfacing Services NZ | Fibreglass Technologies",
+    description: "Professional fibreglass pool resurfacing, gelcoat recolouring, structural repairs & pool modernisation services across New Zealand.",
+  },
+  alternates: {
+    canonical: `${siteUrl}/services`,
+  },
 };
 
 export default function ServicesPage() {

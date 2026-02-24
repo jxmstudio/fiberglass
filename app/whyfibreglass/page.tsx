@@ -3,9 +3,26 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Shield, Droplets, Wrench, Sun, Palette, Zap, ArrowRight, CheckCircle2 } from "lucide-react";
 
-export const metadata = {
-  title: "Why Fibreglass? | Fibreglass Technologies",
-  description: "Discover why fibreglass is the best long-term choice for pool renovations. Durability, low maintenance, and superior performance in NZ conditions.",
+import type { Metadata } from "next";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://fibreglasstech.co.nz';
+
+export const metadata: Metadata = {
+  title: "Why Choose Fibreglass Pools NZ | Benefits & Comparison",
+  description: "Why choose fibreglass for your pool in New Zealand? 15-25 year lifespan, low maintenance, smooth surface & ideal for NZ weather. Compare fibreglass vs traditional pool surfaces.",
+  openGraph: {
+    title: "Why Choose Fibreglass Pools NZ | Fibreglass Technologies",
+    description: "Why choose fibreglass for your pool in New Zealand? 15-25 year lifespan, low maintenance, smooth surface & ideal for NZ weather.",
+    url: `${siteUrl}/whyfibreglass`,
+    images: [{ url: "/clean.png", width: 1200, height: 630, alt: "Why choose fibreglass pools NZ" }],
+  },
+  twitter: {
+    title: "Why Choose Fibreglass Pools NZ | Fibreglass Technologies",
+    description: "Why choose fibreglass for your pool in New Zealand? 15-25 year lifespan, low maintenance & ideal for NZ weather.",
+  },
+  alternates: {
+    canonical: `${siteUrl}/whyfibreglass`,
+  },
 };
 
 export default function WhyFibreglassPage() {

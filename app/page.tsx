@@ -3,7 +3,6 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
-  ChevronDown, 
   Shield, 
   Award, 
   Truck, 
@@ -12,7 +11,6 @@ import {
   Droplets, 
   Zap, 
   Settings, 
-  DollarSign,
   ArrowRight,
   Sparkles,
   CheckCircle2
@@ -88,14 +86,6 @@ export default function Home() {
                 <Link href="/process">Discover Our Process</Link>
               </Button>
             </div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-fade-in opacity-0 delay-700">
-          <div className="flex flex-col items-center text-white/60 scroll-indicator">
-            <span className="text-xs uppercase tracking-widest mb-2">Scroll</span>
-            <ChevronDown className="h-5 w-5" />
           </div>
         </div>
 
@@ -302,10 +292,11 @@ export default function Home() {
               <div className="aspect-[4/3] rounded-3xl overflow-hidden border border-border/30 shadow-2xl">
                 <Image
                   src="/clean.png"
-                  alt="Professional fibreglass pool resurfacing in action"
+                  alt="Professional fibreglass pool resurfacing NZ - Premium pool renovation by Fibreglass Technologies"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
+                  loading="lazy"
                 />
               </div>
               

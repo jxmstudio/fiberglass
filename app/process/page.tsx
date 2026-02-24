@@ -3,9 +3,26 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2, ClipboardCheck, Sparkles, Paintbrush, Search, Settings, ArrowRight } from "lucide-react";
 
-export const metadata = {
-  title: "Our Process | Fibreglass Technologies",
-  description: "Our 5-step professional process for fibreglass pool renovations. From assessment to handover, we ensure quality at every stage.",
+import type { Metadata } from "next";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://fibreglasstech.co.nz';
+
+export const metadata: Metadata = {
+  title: "Pool Resurfacing Process NZ | 5-Step Professional Renovation",
+  description: "Discover our professional 5-step fibreglass pool resurfacing process in New Zealand. From assessment to handover, quality workmanship at every stage. No shortcuts, no compromises.",
+  openGraph: {
+    title: "Pool Resurfacing Process NZ | Fibreglass Technologies",
+    description: "Discover our professional 5-step fibreglass pool resurfacing process in New Zealand. Quality workmanship at every stage.",
+    url: `${siteUrl}/process`,
+    images: [{ url: "/clean.png", width: 1200, height: 630, alt: "Fibreglass pool resurfacing process NZ" }],
+  },
+  twitter: {
+    title: "Pool Resurfacing Process NZ | Fibreglass Technologies",
+    description: "Discover our professional 5-step fibreglass pool resurfacing process in New Zealand.",
+  },
+  alternates: {
+    canonical: `${siteUrl}/process`,
+  },
 };
 
 export default function OurProcessPage() {

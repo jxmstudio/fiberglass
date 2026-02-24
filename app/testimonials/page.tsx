@@ -4,9 +4,24 @@ import Link from "next/link";
 import { Star, Quote, ArrowRight, MapPin } from "lucide-react";
 import type { Metadata } from "next";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://fibreglasstech.co.nz';
+
 export const metadata: Metadata = {
-  title: "Testimonials | Fibreglass Technologies",
-  description: "See what our customers say about our premium fibreglass pool renovations across New Zealand.",
+  title: "Pool Renovation Reviews NZ | Customer Testimonials",
+  description: "Read what New Zealand pool owners say about Fibreglass Technologies. 100+ happy customers, 5-star reviews from Auckland to Queenstown. See real pool renovation results.",
+  openGraph: {
+    title: "Pool Renovation Reviews NZ | Fibreglass Technologies",
+    description: "Read what New Zealand pool owners say about Fibreglass Technologies. 100+ happy customers, 5-star reviews nationwide.",
+    url: `${siteUrl}/testimonials`,
+    images: [{ url: "/clean.png", width: 1200, height: 630, alt: "Fibreglass pool renovation testimonials NZ" }],
+  },
+  twitter: {
+    title: "Pool Renovation Reviews NZ | Fibreglass Technologies",
+    description: "Read what New Zealand pool owners say about Fibreglass Technologies. 100+ happy customers, 5-star reviews.",
+  },
+  alternates: {
+    canonical: `${siteUrl}/testimonials`,
+  },
 };
 
 const testimonials = [

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
+import { TrackedPhoneLink, TrackedEmailLink } from "@/components/TrackedLinks";
 
 export function Footer() {
   return (
@@ -16,7 +17,7 @@ export function Footer() {
               <div className="flex-shrink-0">
                 <Image 
                   src="/fevicon version-01.png" 
-                  alt="Fibreglass Technologies" 
+                  alt="Fibreglass Technologies NZ - Pool Resurfacing Specialists" 
                   width={40} 
                   height={40}
                   priority
@@ -67,6 +68,7 @@ export function Footer() {
                 { label: "Our Process", href: "/process" },
                 { label: "Testimonials", href: "/testimonials" },
                 { label: "Contact Us", href: "/contact" },
+                { label: "Privacy Policy", href: "/privacy" },
               ].map((item) => (
                 <li key={item.label}>
                   <Link
@@ -89,13 +91,20 @@ export function Footer() {
                 <div className="p-2 rounded-full bg-primary/10">
                   <Phone className="h-4 w-4 text-primary" />
                 </div>
-                <span>0800 POOL FIX</span>
+                <TrackedPhoneLink 
+                  phoneNumber="0800 766 5349" 
+                  displayText="0800 POOL FIX"
+                  className="hover:text-primary transition-colors"
+                />
               </li>
               <li className="flex items-center space-x-3 text-muted-foreground">
                 <div className="p-2 rounded-full bg-primary/10">
                   <Mail className="h-4 w-4 text-primary" />
                 </div>
-                <span>info@fibreglasstech.co.nz</span>
+                <TrackedEmailLink 
+                  email="info@fibreglasstech.co.nz"
+                  className="hover:text-primary transition-colors"
+                />
               </li>
               <li className="flex items-center space-x-3 text-muted-foreground">
                 <div className="p-2 rounded-full bg-primary/10">

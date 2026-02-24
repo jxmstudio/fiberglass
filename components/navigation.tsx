@@ -43,7 +43,7 @@ export function Navigation() {
             <div className="transition-transform duration-300 group-hover:scale-105">
               <Image 
                 src="/fevicon version-01.png" 
-                alt="Fibreglass Technologies" 
+                alt="Fibreglass Technologies NZ - Pool Resurfacing Specialists" 
                 width={44} 
                 height={44}
                 priority

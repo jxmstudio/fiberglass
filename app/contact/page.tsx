@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -9,7 +9,10 @@ import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Phone, Mail, MapPin, CheckCircle2, ArrowRight, Send } from "lucide-react";
+import { Phone, Mail, MapPin, CheckCircle2, Send } from "lucide-react";
+import { getAttributionForForm } from "@/lib/utm";
+import { trackFormSubmit } from "@/lib/gtm";
+import { TrackedPhoneLink, TrackedEmailLink } from "@/components/TrackedLinks";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -17,34 +20,76 @@ const formSchema = z.object({
   phone: z.string().min(10, "Please enter a valid phone number"),
   location: z.string().min(2, "Please enter your location"),
   message: z.string().min(10, "Please provide more details about your project"),
+  honeypot: z.string().max(0, "Bot detected").optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
 
+interface AttributionData {
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  first_visit_source?: string;
+  landing_page?: string;
+  referrer?: string;
+}
+
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [attribution, setAttribution] = useState<AttributionData>({});
+  
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
+    watch,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
 
+  useEffect(() => {
+    const data = getAttributionForForm();
+    setAttribution(data);
+  }, []);
+
+  const honeypotValue = watch("honeypot");
+
   const onSubmit = async (data: FormData) => {
+    if (data.honeypot) {
+      console.log("Bot detected");
+      return;
+    }
+
     try {
+      const submissionData = {
+        ...data,
+        ...attribution,
+        submitted_at: new Date().toISOString(),
+        page_url: typeof window !== 'undefined' ? window.location.href : '',
+      };
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(submissionData),
       });
 
       if (!response.ok) {
         throw new Error("Failed to submit form");
       }
+
+      trackFormSubmit({
+        form_name: "contact_form",
+        form_id: "main_contact",
+        utm_source: attribution.utm_source,
+        utm_medium: attribution.utm_medium,
+        utm_campaign: attribution.utm_campaign,
+      });
 
       setSubmitted(true);
       reset();
@@ -108,6 +153,16 @@ export default function ContactPage() {
                       </div>
                     ) : (
                       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                        {/* Honeypot field - hidden from users, catches bots */}
+                        <div className="absolute -left-[9999px]" aria-hidden="true">
+                          <Input
+                            type="text"
+                            {...register("honeypot")}
+                            tabIndex={-1}
+                            autoComplete="off"
+                          />
+                        </div>
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           <div className="space-y-2">
                             <Label htmlFor="name" className="text-foreground/80">Full Name *</Label>
@@ -206,22 +261,43 @@ export default function ContactPage() {
                     <CardTitle className="text-xl">Contact Information</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-6">
-                    {[
-                      { icon: Phone, label: "Phone", value: "0800 POOL FIX", subtext: "(0800 766 5349)" },
-                      { icon: Mail, label: "Email", value: "info@fibreglasstech.co.nz" },
-                      { icon: MapPin, label: "Service Area", value: "Nationwide", subtext: "Mobile service available" }
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-start space-x-4">
-                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                          <item.icon className="h-5 w-5 text-primary" />
-                        </div>
-                        <div>
-                          <p className="font-medium text-foreground/80">{item.label}</p>
-                          <p className="text-foreground/60">{item.value}</p>
-                          {item.subtext && <p className="text-sm text-foreground/40">{item.subtext}</p>}
-                        </div>
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Phone className="h-5 w-5 text-primary" />
                       </div>
-                    ))}
+                      <div>
+                        <p className="font-medium text-foreground/80">Phone</p>
+                        <TrackedPhoneLink 
+                          phoneNumber="0800 766 5349"
+                          className="text-foreground/60 hover:text-primary transition-colors"
+                        >
+                          0800 POOL FIX
+                        </TrackedPhoneLink>
+                        <p className="text-sm text-foreground/40">(0800 766 5349)</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Mail className="h-5 w-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground/80">Email</p>
+                        <TrackedEmailLink 
+                          email="info@fibreglasstech.co.nz"
+                          className="text-foreground/60 hover:text-primary transition-colors"
+                        />
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <MapPin className="h-5 w-5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="font-medium text-foreground/80">Service Area</p>
+                        <p className="text-foreground/60">Nationwide</p>
+                        <p className="text-sm text-foreground/40">Mobile service available</p>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
 
