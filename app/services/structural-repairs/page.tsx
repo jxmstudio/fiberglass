@@ -212,11 +212,12 @@ export default function StructuralRepairsPage() {
               <div className="relative">
                 <div className="aspect-[4/3] rounded-3xl overflow-hidden border border-border/30 shadow-2xl">
                   <Image
-                    src="/clean.png"
-                    alt="Professional pool structural repairs in New Zealand"
+                    src="/services/structural-repairs/structural-repairs-hero.png"
+                    alt="Professional technician repairing cracks in fibreglass pool"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
                   />
                 </div>
                 <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />

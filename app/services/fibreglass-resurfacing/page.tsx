@@ -140,11 +140,12 @@ export default function FibreglassResurfacingPage() {
               <div className="relative">
                 <div className="aspect-[4/3] rounded-3xl overflow-hidden border border-border/30 shadow-2xl">
                   <Image
-                    src="/clean.png"
-                    alt="Professional fibreglass pool resurfacing in New Zealand"
+                    src="/services/fibreglass-resurfacing/resurfacing-in-progress.png"
+                    alt="Professional fibreglass pool resurfacing in progress in New Zealand"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
                   />
                 </div>
                 <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
@@ -184,9 +185,54 @@ export default function FibreglassResurfacingPage() {
         </div>
       </section>
 
-      {/* Signs You Need Resurfacing */}
+      {/* Our Process Gallery */}
       <section className="py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <p className="text-sm uppercase tracking-[0.2em] text-primary mb-4">Our Expertise</p>
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl mb-6">
+                Professional <span className="italic text-gradient">Craftsmanship</span>
+              </h2>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/30 shadow-lg">
+                <Image
+                  src="/services/fibreglass-resurfacing/surface-preparation.png"
+                  alt="Technician preparing fibreglass pool surface with orbital sander"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+              </div>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/30 shadow-lg">
+                <Image
+                  src="/services/fibreglass-resurfacing/gelcoat-application.png"
+                  alt="Professional gelcoat application on fibreglass pool surface"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+              </div>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/30 shadow-lg md:col-span-2 lg:col-span-1">
+                <Image
+                  src="/services/fibreglass-resurfacing/finished-pool-surface.png"
+                  alt="Completed fibreglass pool resurfacing with smooth glossy finish"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 33vw"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Signs You Need Resurfacing */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 hero-gradient opacity-30" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <p className="text-sm uppercase tracking-[0.2em] text-primary mb-4">Is It Time?</p>

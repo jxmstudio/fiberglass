@@ -185,11 +185,12 @@ export default function GelcoatRecolouringPage() {
               <div className="relative">
                 <div className="aspect-[4/3] rounded-3xl overflow-hidden border border-border/30 shadow-2xl">
                   <Image
-                    src="/clean.png"
-                    alt="Professional gelcoat recolouring process in New Zealand"
+                    src="/services/gelcoat-recolouring/gelcoat-recolouring-hero.png"
+                    alt="Pool gelcoat colour samples and options in New Zealand"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
                   />
                 </div>
                 <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
@@ -214,6 +215,41 @@ export default function GelcoatRecolouringPage() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Professional Application */}
+      <section className="py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <p className="text-sm uppercase tracking-[0.2em] text-primary mb-4">Expert Application</p>
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl mb-6">
+                Professional <span className="italic text-gradient">Craftsmanship</span>
+              </h2>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/30 shadow-lg">
+                <Image
+                  src="/services/gelcoat-recolouring/gelcoat-spraying-process.png"
+                  alt="Professional gelcoat spray application on fibreglass pool in New Zealand"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border/30 shadow-lg">
+                <Image
+                  src="/services/gelcoat-recolouring/gelcoat-recolouring-hero.png"
+                  alt="Pool gelcoat colour samples and options in New Zealand"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
               </div>
             </div>
           </div>

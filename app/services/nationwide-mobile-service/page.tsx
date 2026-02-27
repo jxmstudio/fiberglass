@@ -227,11 +227,12 @@ export default function NationwideMobileServicePage() {
               <div className="relative">
                 <div className="aspect-[4/3] rounded-3xl overflow-hidden border border-border/30 shadow-2xl">
                   <Image
-                    src="/clean.png"
-                    alt="Mobile pool service across New Zealand"
+                    src="/services/nationwide-mobile-service/nationwide-mobile-service-hero.png"
+                    alt="Professional mobile pool service team with equipment in New Zealand"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
                   />
                 </div>
                 <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl" />
