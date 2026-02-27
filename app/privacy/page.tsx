@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import { CONTACT } from "@/lib/contact";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://fibreglasstech.co.nz';
 
@@ -219,9 +220,28 @@ export default function PrivacyPage() {
                   or have a complaint, please contact us:
                 </p>
                 <div className="bg-primary/5 rounded-lg p-4 mt-4">
-                  <p className="text-foreground/80 font-medium">Fibreglass Technologies</p>
-                  <p className="text-foreground/70">Email: info@fibreglasstech.co.nz</p>
-                  <p className="text-foreground/70">Phone: 0800 POOL FIX (0800 766 5349)</p>
+                  <p className="text-foreground/80 font-medium">{CONTACT.COMPANY_NAME}</p>
+                  <p className="text-foreground/70">
+                    Email:{" "}
+                    <a 
+                      href={CONTACT.EMAIL_HREF} 
+                      className="text-primary hover:underline"
+                      data-track="email_click"
+                    >
+                      {CONTACT.EMAIL}
+                    </a>
+                  </p>
+                  <p className="text-foreground/70">
+                    Phone:{" "}
+                    <a 
+                      href={CONTACT.PHONE_HREF} 
+                      className="text-primary hover:underline"
+                      data-track="phone_click"
+                    >
+                      {CONTACT.PHONE_DISPLAY}
+                    </a>
+                    {" "}({CONTACT.PHONE_TEL})
+                  </p>
                 </div>
                 <p className="text-foreground/70 leading-relaxed mt-4">
                   If you are not satisfied with our response, you may also contact the Office of the 

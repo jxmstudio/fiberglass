@@ -13,6 +13,7 @@ import { Phone, Mail, MapPin, CheckCircle2, Send } from "lucide-react";
 import { getAttributionForForm } from "@/lib/utm";
 import { trackFormSubmit } from "@/lib/gtm";
 import { TrackedPhoneLink, TrackedEmailLink } from "@/components/TrackedLinks";
+import { CONTACT } from "@/lib/contact";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -268,12 +269,12 @@ export default function ContactPage() {
                       <div>
                         <p className="font-medium text-foreground/80">Phone</p>
                         <TrackedPhoneLink 
-                          phoneNumber="0800 766 5349"
+                          phoneNumber={CONTACT.PHONE_TEL}
                           className="text-foreground/60 hover:text-primary transition-colors"
                         >
-                          0800 POOL FIX
+                          {CONTACT.PHONE_DISPLAY}
                         </TrackedPhoneLink>
-                        <p className="text-sm text-foreground/40">(0800 766 5349)</p>
+                        <p className="text-sm text-foreground/40">({CONTACT.PHONE_TEL})</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-4">
@@ -283,7 +284,7 @@ export default function ContactPage() {
                       <div>
                         <p className="font-medium text-foreground/80">Email</p>
                         <TrackedEmailLink 
-                          email="info@fibreglasstech.co.nz"
+                          email={CONTACT.EMAIL}
                           className="text-foreground/60 hover:text-primary transition-colors"
                         />
                       </div>

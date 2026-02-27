@@ -30,6 +30,7 @@ export default function ServicesPage() {
     {
       icon: Droplets,
       title: "Full Fibreglass Resurfacing",
+      href: "/services/fibreglass-resurfacing",
       description: "Rebuild your pool's interior with a new, high strength fibreglass shell that seals, protects, and refreshes your entire pool surface.",
       inclusions: [
         "Complete pool preparation",
@@ -43,6 +44,7 @@ export default function ServicesPage() {
     {
       icon: Palette,
       title: "Gelcoat Recolouring",
+      href: "/services/gelcoat-recolouring",
       description: "Refresh the look of your pool with modern, vibrant colour options that are easy to maintain and built for New Zealand's harsh sun.",
       colorOptions: [
         "Ice Blue",
@@ -56,6 +58,7 @@ export default function ServicesPage() {
     {
       icon: Wrench,
       title: "Structural & Leak Repairs",
+      href: "/services/structural-repairs",
       description: "We identify and repair issues that compromise your pool's strength or water retention.",
       solutions: [
         "Cracks",
@@ -68,6 +71,7 @@ export default function ServicesPage() {
     {
       icon: Zap,
       title: "Pool Modernisation",
+      href: "/services/pool-modernisation",
       description: "Bring new life to an older pool with comprehensive upgrades.",
       inclusions: [
         "New fibreglass interior",
@@ -79,6 +83,7 @@ export default function ServicesPage() {
     {
       icon: Truck,
       title: "Nationwide Mobile Service",
+      href: "/services/nationwide-mobile-service",
       description: "Our fully equipped mobile fibreglass spraying system allows us to complete your renovation onsite — anywhere in New Zealand."
     }
   ];
@@ -119,16 +124,23 @@ export default function ServicesPage() {
               const isReversed = index % 2 === 1;
               
               return (
-                <Card key={index} className="glass border-border/30 overflow-hidden card-hover">
+                <Card key={index} className="glass border-border/30 overflow-hidden card-hover group">
                   <div className={`grid grid-cols-1 lg:grid-cols-2 gap-0 ${isReversed ? 'lg:flex-row-reverse' : ''}`}>
                     <div className="p-8 lg:p-12 bg-primary/5 flex flex-col justify-center">
                       <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
                         <Icon className="h-8 w-8 text-primary" />
                       </div>
                       <h2 className="font-display text-2xl lg:text-3xl mb-4">{service.title}</h2>
-                      <p className="text-foreground/60 text-lg leading-relaxed">
+                      <p className="text-foreground/60 text-lg leading-relaxed mb-6">
                         {service.description}
                       </p>
+                      <Link 
+                        href={service.href} 
+                        className="inline-flex items-center text-primary font-medium hover:underline"
+                      >
+                        Learn More
+                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Link>
                     </div>
                     <div className="p-8 lg:p-12">
                       {service.inclusions && (

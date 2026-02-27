@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
 import { TrackedPhoneLink, TrackedEmailLink } from "@/components/TrackedLinks";
+import { CONTACT } from "@/lib/contact";
 
 export function Footer() {
   return (
@@ -41,10 +42,10 @@ export function Footer() {
             <h4 className="text-sm font-semibold uppercase tracking-wider text-foreground/50">Services</h4>
             <ul className="space-y-3">
               {[
-                { label: "Full Resurfacing", href: "/services" },
-                { label: "Gelcoat Recolouring", href: "/services" },
-                { label: "Structural Repairs", href: "/services" },
-                { label: "Pool Modernisation", href: "/services" },
+                { label: "Full Resurfacing", href: "/services/fibreglass-resurfacing" },
+                { label: "Gelcoat Recolouring", href: "/services/gelcoat-recolouring" },
+                { label: "Structural Repairs", href: "/services/structural-repairs" },
+                { label: "Pool Modernisation", href: "/services/pool-modernisation" },
               ].map((item) => (
                 <li key={item.label}>
                   <Link
@@ -92,8 +93,8 @@ export function Footer() {
                   <Phone className="h-4 w-4 text-primary" />
                 </div>
                 <TrackedPhoneLink 
-                  phoneNumber="0800 766 5349" 
-                  displayText="0800 POOL FIX"
+                  phoneNumber={CONTACT.PHONE_TEL}
+                  displayText={CONTACT.PHONE_DISPLAY}
                   className="hover:text-primary transition-colors"
                 />
               </li>
@@ -102,7 +103,7 @@ export function Footer() {
                   <Mail className="h-4 w-4 text-primary" />
                 </div>
                 <TrackedEmailLink 
-                  email="info@fibreglasstech.co.nz"
+                  email={CONTACT.EMAIL}
                   className="hover:text-primary transition-colors"
                 />
               </li>

@@ -30,7 +30,7 @@ export default function Home() {
             playsInline
             className="absolute inset-0 w-full h-full object-cover"
           >
-            <source src="/Aquayo Pool in 4K - Cinematic Pool Video - CQ Media (1080p, h264).mp4" type="video/mp4" />
+            <source src="https://pub-ffc9a413470f4e69a929b4e0ce1199a7.r2.dev/fibreglass-hero.mp4" type="video/mp4" />
           </video>
           {/* Dark Overlay for better text readability */}
           <div className="absolute inset-0 bg-black/60" />
@@ -190,49 +190,68 @@ export default function Home() {
                 icon: Droplets,
                 title: "Fibreglass Resurfacing",
                 description: "Restore tired, rough, or damaged pools with a premium fibreglass finish.",
-                delay: "delay-100"
+                href: "/services/fibreglass-resurfacing",
+                image: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=600&q=80"
               },
               {
                 icon: Wrench,
                 title: "Structural Repairs",
                 description: "Fix cracks, osmosis blisters, weak spots, and long term leak issues.",
-                delay: "delay-200"
+                href: "/services/structural-repairs",
+                image: "https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?w=600&q=80"
               },
               {
                 icon: Palette,
                 title: "Gelcoat Recolouring",
                 description: "Fresh, vibrant, UV stable colour options for a modern look.",
-                delay: "delay-300"
+                href: "/services/gelcoat-recolouring",
+                image: "https://images.unsplash.com/photo-1572331165267-854da2b10ccc?w=600&q=80"
               },
               {
                 icon: Zap,
                 title: "Pool Modernisation",
                 description: "Transform ageing pools with LED lighting, new fittings, and more.",
-                delay: "delay-400"
+                href: "/services/pool-modernisation",
+                image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80"
               },
               {
                 icon: Truck,
                 title: "Nationwide Mobile",
                 description: "Auckland → Wellington → Christchurch → Queenstown → Everywhere.",
-                delay: "delay-500"
+                href: "/services/nationwide-mobile-service",
+                image: "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=600&q=80"
               },
               {
                 icon: Sparkles,
                 title: "Quality Guarantee",
                 description: "Premium standard finish that meets our exacting specifications.",
-                delay: "delay-600"
+                href: "/services",
+                image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80"
               }
             ].map((service, index) => (
-              <div 
+              <Link 
                 key={service.title} 
-                className={`group p-6 rounded-2xl glass border-border/30 card-hover`}
+                href={service.href}
+                className="group rounded-2xl glass border-border/30 card-hover overflow-hidden block"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                  <service.icon className="h-6 w-6 text-primary" />
+                <div className="relative h-40 overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+                  <div className="absolute bottom-4 left-4 w-10 h-10 rounded-lg bg-primary/90 flex items-center justify-center">
+                    <service.icon className="h-5 w-5 text-primary-foreground" />
+                  </div>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{service.title}</h3>
-                <p className="text-foreground/60 text-sm leading-relaxed">{service.description}</p>
-              </div>
+                <div className="p-5">
+                  <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">{service.title}</h3>
+                  <p className="text-foreground/60 text-sm leading-relaxed">{service.description}</p>
+                </div>
+              </Link>
             ))}
           </div>
 
@@ -291,8 +310,8 @@ export default function Home() {
             <div className="relative">
               <div className="aspect-[4/3] rounded-3xl overflow-hidden border border-border/30 shadow-2xl">
                 <Image
-                  src="/clean.png"
-                  alt="Professional fibreglass pool resurfacing NZ - Premium pool renovation by Fibreglass Technologies"
+                  src="/built-to-last-premium.jpg"
+                  alt="Premium fibreglass pool renovation - Built to last with marine-grade materials"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"

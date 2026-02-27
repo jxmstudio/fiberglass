@@ -21,7 +21,7 @@ export function TrackedPhoneLink({
   };
 
   const formattedPhone = phoneNumber.replace(/\s/g, "");
-  const href = formattedPhone.startsWith("+") || formattedPhone.startsWith("0800")
+  const href = formattedPhone.startsWith("+") || formattedPhone.startsWith("0800") || formattedPhone.startsWith("0508")
     ? `tel:${formattedPhone}`
     : `tel:+64${formattedPhone.replace(/^0/, "")}`;
 
@@ -30,6 +30,7 @@ export function TrackedPhoneLink({
       href={href}
       onClick={handleClick}
       className={className}
+      data-track="phone_click"
     >
       {children || displayText || phoneNumber}
     </a>
@@ -64,6 +65,7 @@ export function TrackedEmailLink({
       href={href}
       onClick={handleClick}
       className={className}
+      data-track="email_click"
     >
       {children || displayText || email}
     </a>

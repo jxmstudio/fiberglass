@@ -1,15 +1,17 @@
+import { CONTACT } from "@/lib/contact";
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://fibreglasstech.co.nz';
 
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Fibreglass Technologies",
+  "name": CONTACT.COMPANY_NAME,
   "url": siteUrl,
   "logo": `${siteUrl}/fevicon version-01.png`,
   "description": "New Zealand's leading fibreglass pool resurfacing specialists. Expert pool renovation, repairs & modernisation services nationwide.",
   "contactPoint": {
     "@type": "ContactPoint",
-    "telephone": "+64-800-766-5349",
+    "telephone": CONTACT.PHONE_SCHEMA,
     "contactType": "customer service",
     "areaServed": "NZ",
     "availableLanguage": "English"
@@ -20,11 +22,11 @@ export const organizationSchema = {
 export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
-  "name": "Fibreglass Technologies",
+  "name": CONTACT.COMPANY_NAME,
   "url": siteUrl,
   "image": `${siteUrl}/clean.png`,
-  "telephone": "0800 766 5349",
-  "email": "info@fibreglasstech.co.nz",
+  "telephone": CONTACT.PHONE_DISPLAY,
+  "email": CONTACT.EMAIL,
   "description": "Premium fibreglass pool renovations across New Zealand. Expert resurfacing, repairs, and modernisation services.",
   "areaServed": {
     "@type": "Country",

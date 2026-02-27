@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2, ClipboardCheck, Sparkles, Paintbrush, Search, Settings, ArrowRight } from "lucide-react";
@@ -32,6 +33,8 @@ export default function OurProcessPage() {
       icon: ClipboardCheck,
       title: "Assessment & Preparation",
       description: "We inspect your pool's current condition, answer your questions, and prepare the surface with grinding, sanding, and structural repairs.",
+      image: "https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=800&q=80",
+      imageAlt: "Pool assessment and preparation process",
       details: [
         "Thorough pool inspection",
         "Clear, detailed quote provided",
@@ -45,6 +48,8 @@ export default function OurProcessPage() {
       icon: Settings,
       title: "Fibreglass Application",
       description: "Sprayed using calibrated, commercial grade equipment for unmatched strength and smoothness.",
+      image: "https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?w=800&q=80",
+      imageAlt: "Professional fibreglass application equipment",
       details: [
         "State of the art equipment",
         "Perfect resin to glass ratios",
@@ -58,6 +63,8 @@ export default function OurProcessPage() {
       icon: Paintbrush,
       title: "Detailing & Refinishing",
       description: "All corners, edges, and fittings are professionally finished with meticulous attention to detail.",
+      image: "https://images.unsplash.com/photo-1572331165267-854da2b10ccc?w=800&q=80",
+      imageAlt: "Pool detailing and refinishing work",
       details: [
         "Professional corner finishing",
         "Edge detailing and refinement",
@@ -71,6 +78,8 @@ export default function OurProcessPage() {
       icon: Sparkles,
       title: "Top Coat Protection",
       description: "A UV stable gelcoat or paint system provides long term durability and a beautiful, easy care surface.",
+      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+      imageAlt: "UV stable gelcoat topcoat application",
       details: [
         "UV stable gelcoat application",
         "Marine grade coating",
@@ -84,6 +93,8 @@ export default function OurProcessPage() {
       icon: Search,
       title: "Quality Check & Handover",
       description: "We complete a full quality check and ensure your renovated pool meets our premium standard.",
+      image: "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=800&q=80",
+      imageAlt: "Completed pool renovation quality check",
       details: [
         "Comprehensive inspection",
         "Every detail verified",
@@ -137,28 +148,38 @@ export default function OurProcessPage() {
                     )}
                     
                     <Card className="glass border-border/30 overflow-hidden card-hover">
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-                        <div className="p-8 lg:p-12 bg-primary/5 flex flex-col justify-center">
-                          <div className="flex items-center space-x-4 mb-6">
-                            <div className="w-20 h-20 rounded-2xl bg-primary flex items-center justify-center text-3xl font-display font-bold text-primary-foreground">
-                              {step.number}
-                            </div>
-                            <div className="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center">
-                              <Icon className="h-7 w-7 text-primary" />
-                            </div>
+                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                        <div className="relative h-48 lg:h-auto lg:min-h-[300px]">
+                          <Image
+                            src={step.image}
+                            alt={step.imageAlt}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 1024px) 100vw, 33vw"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/20 lg:bg-gradient-to-b" />
+                          <div className="absolute top-4 left-4 w-16 h-16 rounded-xl bg-primary flex items-center justify-center text-2xl font-display font-bold text-primary-foreground shadow-lg">
+                            {step.number}
                           </div>
-                          <h2 className="font-display text-2xl lg:text-3xl mb-4">{step.title}</h2>
-                          <p className="text-foreground/60 text-lg leading-relaxed">
+                        </div>
+                        <div className="p-8 lg:p-10 bg-primary/5 flex flex-col justify-center">
+                          <div className="flex items-center space-x-3 mb-4">
+                            <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">
+                              <Icon className="h-6 w-6 text-primary" />
+                            </div>
+                            <h2 className="font-display text-xl lg:text-2xl">{step.title}</h2>
+                          </div>
+                          <p className="text-foreground/60 leading-relaxed">
                             {step.description}
                           </p>
                         </div>
-                        <div className="p-8 lg:p-12">
-                          <h3 className="font-semibold mb-6 text-primary uppercase tracking-wider text-sm">What We Do</h3>
-                          <ul className="space-y-4">
+                        <div className="p-8 lg:p-10">
+                          <h3 className="font-semibold mb-4 text-primary uppercase tracking-wider text-sm">What We Do</h3>
+                          <ul className="space-y-3">
                             {step.details.map((detail, i) => (
                               <li key={i} className="flex items-start space-x-3">
                                 <CheckCircle2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                                <span className="text-foreground/70">{detail}</span>
+                                <span className="text-foreground/70 text-sm">{detail}</span>
                               </li>
                             ))}
                           </ul>

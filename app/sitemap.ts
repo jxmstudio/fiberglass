@@ -18,6 +18,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/services/fibreglass-resurfacing`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/services/gelcoat-recolouring`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/services/structural-repairs`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/services/pool-modernisation`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/services/nationwide-mobile-service`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/contact`,
       lastModified,
       changeFrequency: 'monthly',

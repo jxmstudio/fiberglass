@@ -6,6 +6,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SchemaMarkup } from "@/components/SchemaMarkup";
 import { GTMScript, GTMNoScript } from "@/components/GTMScript";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { TrackingInit } from "@/components/TrackingInit";
 import { CookieConsent } from "@/components/CookieConsent";
 import { organizationSchema, localBusinessSchema, websiteSchema } from "@/lib/schema";
@@ -131,6 +132,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <GoogleAnalytics />
         <GTMScript />
       </head>
       <body
