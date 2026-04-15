@@ -211,7 +211,7 @@ export default function ContactPage() {
                             <Input
                               id="location"
                               {...register("location")}
-                              placeholder="Auckland"
+                              placeholder="Your city or region"
                               className={`bg-secondary/30 border-border/30 focus:border-primary ${errors.location ? "border-destructive" : ""}`}
                             />
                             {errors.location && (
